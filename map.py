@@ -8,7 +8,7 @@ elev = list(data["ELEV"])
 name = list(data["NAME"])
 
 html = """
-Volcano name: <a href="https://www.google.com/search?q=Mount+%s" target="_blank">%s</a>
+Volcano name: <a href="https://www.google.com/search?q=Mount+%s" target="_blank">%s</a> <br/>
 Elevation: %s m
 """
 
@@ -29,8 +29,8 @@ fg = folium.FeatureGroup(name="My Volcano Map")
 
 for lt, ln, el, name in zip(lat, lon, elev, name):
     iframe = folium.IFrame(html=html % (name, name, el), width=200, height=100)
-    fg.add_child(folium.Marker(location=[lt, ln], popup=folium.Popup(
-        iframe), icon=folium.Icon(color=color_producer(el))))
+    fg.add_child(folium.CircleMarker(location=[lt, ln], radius=6, popup=folium.Popup(
+        iframe), color='grey', fill_opacity=0.7, fill=True, fill_color=color_producer(el)))
 
 
 map.add_child(fg)
