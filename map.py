@@ -33,5 +33,8 @@ for lt, ln, el, name in zip(lat, lon, elev, name):
         iframe), color='grey', fill_opacity=0.7, fill=True, fill_color=color_producer(el)))
 
 
+fg.add_child(folium.GeoJson(
+    data=(open('world.json', 'r', encoding='utf-8-sig').read())))
+
 map.add_child(fg)
 map.save("map.html")
